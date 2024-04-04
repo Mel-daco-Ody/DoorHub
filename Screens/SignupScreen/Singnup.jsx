@@ -41,11 +41,11 @@ export default function App() {
     </TouchableOpacity>
     <Text style={styles.Conttext2}>Password</Text>
     <TouchableOpacity style={styles.inputButton}>
-        <TextInput style={styles.input} placeholder="What is your password" secureTextEntry={true} />
+        <TextInput style={styles.inputText} placeholder="What is your password" secureTextEntry={true} />
     </TouchableOpacity>
     <Text style={styles.Conttext3}>Repeat Password</Text>
     <TouchableOpacity style={styles.inputButton}>
-        <TextInput style={styles.input} placeholder="Reenter your password" secureTextEntry={true} />
+        <TextInput style={styles.inputText} placeholder="Reenter your password" secureTextEntry={true} />
         </TouchableOpacity>
     <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Account Creating ...')}>
         <Text style={styles.loginButtonText}>Create Account</Text>

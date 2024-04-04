@@ -40,7 +40,7 @@ export default function SignIn() {
     </TouchableOpacity>
     <Text style={styles.Conttext2}>Password</Text>
     <TouchableOpacity style={styles.inputButton}>
-        <TextInput style={styles.input} placeholder="What is your password" secureTextEntry={true} />
+        <TextInput style={styles.inputText} placeholder="What is your password" secureTextEntry={true} />
     </TouchableOpacity>
     <TouchableOpacity onPress={()=>navigation.navigate('ForgotPass')}>
     <Text style={styles.forgotPass}>Forgot your password ?</Text>
