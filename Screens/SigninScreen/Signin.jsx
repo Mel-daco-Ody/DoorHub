@@ -43,9 +43,9 @@ export default function SignIn() {
         <TextInput style={styles.input} placeholder="What is your password" secureTextEntry={true} />
     </TouchableOpacity>
     <TouchableOpacity onPress={()=>navigation.navigate('ForgotPass')}>
-    <Text style={styles.forgotPass}>Forgot your password?</Text>
+    <Text style={styles.forgotPass}>Forgot your password ?</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Login')}>
+    <TouchableOpacity style={styles.loginButton} onPress={()=>navigation.push('Home')}>
         <Text style={styles.loginButtonText}>Login</Text>
     </TouchableOpacity>
     </View>
@@ -108,13 +108,13 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   forgotPass: {
-    width: '51%',
+    width: '52%',
     fontsize: 14,
     fontWeight: 'bold',
     backgroundColor: '#fff',
     color: '#9435DF',
     marginTop: -10,
-    marginLeft:'54%'
+    marginLeft:'50%'
   },
   inputButton: {
     borderBottomWidth: 1,

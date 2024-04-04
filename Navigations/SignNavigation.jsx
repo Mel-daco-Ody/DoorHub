@@ -4,6 +4,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import Signin from '../Screens/SigninScreen/Signin';
 import Singnup from '../Screens/SignupScreen/Singnup';
 import ForgotPass from '../Screens/ForgotPassScreen/ForgotPass'
+import Home from '../Screens/HomeScreen/Home'
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ export default function SignNavigation() {
           <Stack.Screen name="SignIn" component={Signin}/>
           <Stack.Screen name="SignUp" component={Singnup}/>
           <Stack.Screen name="ForgotPass" component={ForgotPass}/>
+          <Stack.Screen name="Home" component={Home}/>
         </Stack.Navigator>
   );
 }

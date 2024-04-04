@@ -45,7 +45,7 @@ export default function SignIn() {
     <TouchableOpacity style={styles.inputButton}>
         <TextInput style={styles.input} placeholder="So we can send you the confirm mail" secureTextEntry={true} />
         </TouchableOpacity>
-    <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Login')}>
+    <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Sending ...')}>
         <Text style={styles.loginButtonText}>Send Me</Text>
     </TouchableOpacity>
     </View>

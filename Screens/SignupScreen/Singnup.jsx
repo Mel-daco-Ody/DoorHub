@@ -47,7 +47,7 @@ export default function App() {
     <TouchableOpacity style={styles.inputButton}>
         <TextInput style={styles.input} placeholder="Reenter your password" secureTextEntry={true} />
         </TouchableOpacity>
-    <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Login')}>
+    <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Account Creating ...')}>
         <Text style={styles.loginButtonText}>Create Account</Text>
     </TouchableOpacity>
     </View>
