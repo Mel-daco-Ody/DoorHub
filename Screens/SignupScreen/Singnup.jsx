@@ -20,7 +20,7 @@ export default function App() {
             { useNativeDriver: false }
           ),
           onPanResponderRelease: (evt, gestureState) => {
-            if (gestureState.dy > 1) {
+            if (gestureState.dy > 140) {
               navigation.navigate('SignIn');
               console.log('To Signin');
             }
@@ -48,7 +48,7 @@ export default function App() {
         <TextInput style={styles.input} placeholder="Reenter your password" secureTextEntry={true} />
         </TouchableOpacity>
     <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Login')}>
-        <Text style={styles.loginButtonText}>Login</Text>
+        <Text style={styles.loginButtonText}>Create Account</Text>
     </TouchableOpacity>
     </View>
     <View style={styles.footer}>
@@ -66,7 +66,7 @@ export default function App() {
             <Image source={require('../../assets/images/instagram.png')} style={styles.logo} resizeMode ='contain'/>
         </TouchableOpacity>
     </View>
-    <Text style={styles.footerText}>Already have an account?<Text style={{color:'#fff'}} > Swipe left</Text></Text>
+    <Text style={styles.footerText}>Already have an account ?<Text style={{color:'#fff'}} > Swipe down</Text></Text>
     </View>
     </View>
     </ScrollView>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   avatar: {
     height: '11%',
-    marginTop: '-20%',
+    marginTop: '-40%',
     marginBottom: '5%'
   },
   loginText: {

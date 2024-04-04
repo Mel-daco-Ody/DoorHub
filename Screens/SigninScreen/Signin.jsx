@@ -19,7 +19,7 @@ export default function SignIn() {
             { useNativeDriver: false }
           ),
           onPanResponderRelease: (evt, gestureState) => {
-            if (gestureState.dy > 1) {
+            if (gestureState.dy > 140) {
               navigation.navigate('SignUp');
               console.log('To Signup');
             }
@@ -64,7 +64,7 @@ export default function SignIn() {
             <Image source={require('../../assets/images/instagram.png')} style={styles.logo} resizeMode ='contain'/>
         </TouchableOpacity>
     </View>
-    <Text style={styles.footerText}>Don't have an account?<Text style={{color:'#fff'}} > Swipe right</Text></Text>
+    <Text style={styles.footerText}>Don't have an account ?<Text style={{color:'#fff'}} > Swipe down</Text></Text>
     </View>
     </View>
     </ScrollView>

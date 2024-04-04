@@ -18,7 +18,7 @@ export default function SignIn() {
             { useNativeDriver: false }
           ),
           onPanResponderRelease: (evt, gestureState) => {
-            if (gestureState.dy > 1) {
+            if (gestureState.dy > 140) {
               navigation.navigate('SignIn');
               console.log('To Signin');
             }
@@ -46,7 +46,7 @@ export default function SignIn() {
         <TextInput style={styles.input} placeholder="So we can send you the confirm mail" secureTextEntry={true} />
         </TouchableOpacity>
     <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Login')}>
-        <Text style={styles.loginButtonText}>Login</Text>
+        <Text style={styles.loginButtonText}>Send Me</Text>
     </TouchableOpacity>
     </View>
     <View style={styles.footer}>
@@ -64,7 +64,7 @@ export default function SignIn() {
             <Image source={require('../../assets/images/instagram.png')} style={styles.logo} resizeMode ='contain'/>
         </TouchableOpacity>
     </View>
-    <Text style={styles.footerText}>Don't have an account?<Text style={{color:'#fff'}} > Swipe right</Text></Text>
+    <Text style={styles.footerText}>Remember something ?<Text style={{color:'#fff'}} > Swipe down</Text></Text>
     </View>
     </View>
     </ScrollView>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   avatar: {
     height: '11%',
-    marginTop: '-25%',
+    marginTop: '-40%',
     marginBottom: '7%'
   },
   loginText: {
