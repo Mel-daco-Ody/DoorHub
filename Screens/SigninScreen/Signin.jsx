@@ -3,8 +3,30 @@ import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, KeyboardAvo
 import { ScrollView } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import * as WebBrowser from "expo-web-browser";
+import { useOAuth } from "@clerk/clerk-expo";
+import { useWarmUpBrowser } from '../../hooks/useWarmUpBrowser';
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function SignIn() {
+  useWarmUpBrowser();
+    const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+    const onPress = React.useCallback(async () => {
+        console.log("SCO")
+        try {
+          const { createdSessionId, signIn, signUp, setActive } =
+            await startOAuthFlow();
+     
+          if (createdSessionId) {
+            setActive({ session: createdSessionId });
+          } else {
+            // Use signIn or signUp for next steps such as MFA
+          }
+        } catch (err) {
+          console.error("OAuth error", err);
+        }
+      }, []);
 
     const navigation = useNavigation();
         const pan = useRef(new Animated.ValueXY()).current;
@@ -45,14 +67,14 @@ export default function SignIn() {
     <TouchableOpacity onPress={()=>navigation.navigate('ForgotPass')}>
     <Text style={styles.forgotPass}>Forgot your password ?</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.loginButton} onPress={()=>navigation.push('Home')}>
+    <TouchableOpacity style={styles.loginButton} onPress={()=>navigation.replace('Home')}>
         <Text style={styles.loginButtonText}>Login</Text>
     </TouchableOpacity>
     </View>
     <View style={styles.footer}>
         <Text style={styles.footerText}>Or sign in with</Text>
         <View style={styles.socialContainer}>
-        <TouchableOpacity style={styles.button} onPress={()=>console.log('Head to Gmail')}>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
             <Image source={require('../../assets/images/gmail.png')} style={styles.logo} resizeMode ='contain'/>
         </TouchableOpacity>
 

@@ -21,7 +21,7 @@ export default function HomeScreen() {
 
         <BusinessList/>
 
-        <Button title="Go back (Use in testing)" onPress={()=>navigation.goBack()}/>
+        <Button title="Go back (Use in testing)" onPress={()=>navigation.replace('SignIn')}/>
 
       </View>
     
