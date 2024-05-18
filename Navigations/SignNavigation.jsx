@@ -6,6 +6,7 @@ import Singnup from '../Screens/SignupScreen/Singnup';
 import ForgotPass from '../Screens/ForgotPassScreen/ForgotPass'
 import Home from '../Screens/HomeScreen/Home'
 import Starter from '../Screens/StarterScreen/Starter' 
+import WorkBoard from '../Screens/WorkBoardScreen/WorkBoard'
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export default function SignNavigation() {
           <Stack.Screen name="SignUp" component={Singnup}/>
           <Stack.Screen name="ForgotPass" component={ForgotPass}/>
           <Stack.Screen name="Home" component={Home}/>
+          <Stack.Screen name="Work" component={WorkBoard}/>
         </Stack.Navigator>
   );
 }

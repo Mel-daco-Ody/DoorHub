@@ -1,35 +1,14 @@
 import React, {useRef, useEffect, useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, PanResponder, Animated } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, PanResponder, Animated} from 'react-native';
 import { ScrollView } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import * as WebBrowser from "expo-web-browser";
-import { useOAuth } from "@clerk/clerk-expo";
-import { useWarmUpBrowser } from '../../hooks/useWarmUpBrowser';
+import { useNavigation } from '@react-navigation/native';
 
-WebBrowser.maybeCompleteAuthSession();
 
-export default function SignIn() {
-  useWarmUpBrowser();
-    const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
-    const onPress = React.useCallback(async () => {
-        console.log("SCO")
-        try {
-          const { createdSessionId, signIn, signUp, setActive } =
-            await startOAuthFlow();
-     
-          if (createdSessionId) {
-            setActive({ session: createdSessionId });
-          } else {
-            // Use signIn or signUp for next steps such as MFA
-          }
-        } catch (err) {
-          console.error("OAuth error", err);
-        }
-      }, []);
-
+export default function App() {
     const navigation = useNavigation();
-        const pan = useRef(new Animated.ValueXY()).current;
+    
+    const pan = useRef(new Animated.ValueXY()).current;
     
         const panResponder = PanResponder.create({
           onStartShouldSetPanResponder: () => true,
@@ -42,8 +21,8 @@ export default function SignIn() {
           ),
           onPanResponderRelease: (evt, gestureState) => {
             if (gestureState.dy > 140) {
-              navigation.navigate('SignUp');
-              console.log('To Signup');
+              navigation.navigate('SignIn');
+              console.log('To Signin');
             }
             // Khôi phục vị trí ban đầu của pan
             Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
@@ -54,7 +33,7 @@ export default function SignIn() {
     <ScrollView style={styles.Scroll} {...panResponder.panHandlers}>
     <View style={styles.container}>
     <Image source={require('../../assets/images/Logo.png')} style={styles.avatar} resizeMode ='contain' />
-    <Text style={styles.loginText}>Sign In</Text>
+    <Text style={styles.loginText}>Sign Up</Text>
     <View style={styles.inputContainer}>
     <Text style={styles.Conttext1}>ID Name</Text>
     <TouchableOpacity style={styles.inputButton}>
@@ -64,17 +43,18 @@ export default function SignIn() {
     <TouchableOpacity style={styles.inputButton}>
         <TextInput style={styles.inputText} placeholder="What is your password" secureTextEntry={true} />
     </TouchableOpacity>
-    <TouchableOpacity onPress={()=>navigation.navigate('ForgotPass')}>
-    <Text style={styles.forgotPass}>Forgot your password ?</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.loginButton} onPress={()=>navigation.replace('Work')}>
-        <Text style={styles.loginButtonText}>Login</Text>
+    <Text style={styles.Conttext3}>Repeat Password</Text>
+    <TouchableOpacity style={styles.inputButton}>
+        <TextInput style={styles.inputText} placeholder="Reenter your password" secureTextEntry={true} />
+        </TouchableOpacity>
+    <TouchableOpacity style={styles.loginButton} onPress={()=>console.log('Account Creating ...')}>
+        <Text style={styles.loginButtonText}>Create Account</Text>
     </TouchableOpacity>
     </View>
     <View style={styles.footer}>
-        <Text style={styles.footerText}>Or sign in with</Text>
+        <Text style={styles.footerText}>Or sign up with</Text>
         <View style={styles.socialContainer}>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
+        <TouchableOpacity style={styles.button} onPress={()=>console.log('Head to Gmail')}>
             <Image source={require('../../assets/images/gmail.png')} style={styles.logo} resizeMode ='contain'/>
         </TouchableOpacity>
 
@@ -86,12 +66,12 @@ export default function SignIn() {
             <Image source={require('../../assets/images/instagram.png')} style={styles.logo} resizeMode ='contain'/>
         </TouchableOpacity>
     </View>
-    <Text style={styles.footerText}>Don't have an account ?<Text style={{color:'#fff'}} > Swipe down</Text></Text>
+    <Text style={styles.footerText}>Already have an account ?<Text style={{color:'#fff'}} > Swipe down</Text></Text>
     </View>
     </View>
     </ScrollView>
   );
-  }
+}
 
 const styles = StyleSheet.create({
   Scroll: {
@@ -107,8 +87,8 @@ const styles = StyleSheet.create({
   },
   avatar: {
     height: '11%',
-    marginTop: '-25%',
-    marginBottom: '7%'
+    marginTop: '-40%',
+    marginBottom: '5%'
   },
   loginText: {
     fontSize: 70,
@@ -128,15 +108,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 30,
     paddingTop: 15,
-  },
-  forgotPass: {
-    width: '52%',
-    fontsize: 14,
-    fontWeight: 'bold',
-    backgroundColor: '#fff',
-    color: '#9435DF',
-    marginTop: -10,
-    marginLeft:'50%'
   },
   inputButton: {
     borderBottomWidth: 1,
@@ -183,6 +154,20 @@ const styles = StyleSheet.create({
   },
   Conttext2: {
     width: '22%',
+    fontSize: 14,
+    fontWeight: 'bold',
+    backgroundColor: '#fff',
+    color: '#9435DF',
+    marginTop: 20,
+    marginBottom: -15,
+    marginLeft: 10,
+    zIndex:1,
+    textShadowColor: '#fff', // Màu của shadow (đen với độ mờ là 0.5)
+    textShadowOffset: { width: 1, height: 2 }, // Độ dịch chuyển của shadow theo trục x và y
+    textShadowRadius: 5,
+  },
+  Conttext3: {
+    width: '39%',
     fontSize: 14,
     fontWeight: 'bold',
     backgroundColor: '#fff',
